@@ -1,0 +1,29 @@
+{
+  "name": "react-webpack-boilerplate",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Simple react-webpack boilerplate.",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config ./webpack.config.js",
+    "build": "webpack --mode production",
+    "test": "ospec --require ./test-setup.js"
+  },
+  "author": "Roma",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "^4.9.0",
+    "@material-ui/icons": "^4.5.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  }
+}

@@ -1,7 +1,7 @@
-//import React from 'react';
+import LinkLoader from './linkLoader';
 
 const App = () => (
-  <p>ttt</p>
+  <LinkLoader/>
 );
 
 export default App;

@@ -2,7 +2,6 @@ module.hot && module.hot.accept();
 
 import * as serviceWorker from 'serviceWorker';
 
-import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './cmp/App';

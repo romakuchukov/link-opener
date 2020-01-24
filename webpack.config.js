@@ -49,7 +49,7 @@ const config = {
     // watching drops significantly.
     new webpack.WatchIgnorePlugin([path.join(__dirname, 'node_modules')]),
     new webpack.ProvidePlugin({
-      //react: 'react',
+      React: 'react',
       serviceWorker: ['serviceWorker', 'default']
     }),
   ],

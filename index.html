@@ -8,8 +8,11 @@
     <link rel="apple-touch-icon" href="public/logo192.png" />
     <link rel="apple-touch-icon" href="public/logo592.png" />
     <link rel="manifest" href="public/manifest.json" />
-    <title>Bike Products</title>
+    <title>Link Opener</title>
     <style>
+        * { padding: 0; margin: 0; }
+        html, body { height: 100%; }
+        body { font-family: Courier, monospace; }
         .lds-dual-ring {
             display: block;
             width: 110px;
@@ -28,13 +31,16 @@
             border-color: #3f51b5 transparent #3f51b5 transparent;
             animation: lds-dual-ring 1.2s linear infinite;
         }
+        #root {
+            margin: 0 auto;
+            height: 100%;
+            width: 100%;
+            max-width: 900px;
+            position: relative;
+        }
         @keyframes lds-dual-ring {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>

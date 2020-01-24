@@ -14,7 +14,7 @@ const config = {
   resolve: {
     extensions: ['.js'],
     alias: {
-      //mq: path.resolve(__dirname, './src/plugins/mq'),
+      serviceWorker: path.resolve(__dirname, './src/plugins/serviceWorker'),
     }
   },
 
@@ -48,10 +48,10 @@ const config = {
     // Ignore node_modules so CPU usage with poll
     // watching drops significantly.
     new webpack.WatchIgnorePlugin([path.join(__dirname, 'node_modules')]),
-    // new webpack.ProvidePlugin({
-    //   //mq: ['mq', 'default'],
-    //   //react: 'react',
-    // }),
+    new webpack.ProvidePlugin({
+      //react: 'react',
+      serviceWorker: ['serviceWorker', 'default']
+    }),
   ],
 };
 

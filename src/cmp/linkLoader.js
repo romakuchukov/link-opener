@@ -1,35 +1,46 @@
-import { TextareaAutosize, withStyles } from '@material-ui/core';
+import { TextareaAutosize } from '@material-ui/core';
 
+import { makeStyles } from '@material-ui/core/styles';
 
-const styles = (theme) => ({
-  stepper: {
-    padding: theme.spacing(3, 0, 5),
-    [theme.breakpoints.down(290)]: { display: 'none' }
+const useStyles = makeStyles(theme => ({
+  appBar: { position: 'relative' },
+  layout: {
+    width: 'auto',
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up(800 + theme.spacing(2) * 2)]: {
+      width: '100%',
+      maxWidth: 800,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
   },
-  buttons: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
-  button: {
+  paper: {
     marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(1),
-  },
-  typography: { padding: theme.spacing(2) },
-});
+    marginBottom: theme.spacing(3),
+    padding: theme.spacing(2),
+    [theme.breakpoints.up(800 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(6),
+      marginBottom: theme.spacing(6),
+      padding: theme.spacing(3),
+    },
+  }
+}));
+//const styles = useStyles();
 
 const MaxHeightTextarea = (props) => {
-  const {classes} = props;
+  const styles = useStyles();
 
   const parseLinks = () => {
     console.log('logging', 1);
-    console.log(classes), 2;
+    console.log(styles), 2;
     //console.log(styles, 3);
   }
   return (
     <TextareaAutosize
       onChange={parseLinks}
       onFocus={parseLinks}
-      className={classes.button}
+      className={styles.button}
       aria-label="Paste links"
       placeholder="Paste your links"
       defaultValue=""
@@ -37,4 +48,4 @@ const MaxHeightTextarea = (props) => {
   );
 }
 
-export default withStyles(styles)(MaxHeightTextarea);
+export default MaxHeightTextarea;

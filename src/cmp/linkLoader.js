@@ -1,4 +1,4 @@
-import { TextareaAutosize, withStyles } from '@material-ui/core';
+import { TextareaAutosize, withStyles, Button, CssBaseline } from '@material-ui/core';
 
 const typography = {
   fontSize:20,
@@ -51,29 +51,53 @@ const styles = (theme) => ({
 });
 
 const MaxHeightTextarea = (props) => {
-  const [state, setState] = React.useState('');
+  const [state, setState] = React.useState({value: '', clsToggle: true});
   const {classes} = props;
 
   const parseLinks = (e) => {
-    setState(e.target.value);
+    const { value } = e.target;
+    setState(prevState => ({ ...prevState, value }));
   }
 
-  const mergeCls = (...classList) => classList.join(' ');
+  const mergeCls = (...classList) => classList.filter(item => item).join(' ');
 
+
+  const toggle = () => {
+    setState(prevState => ({ ...prevState, clsToggle: !prevState.clsToggle }));
+  }
+
+  const list = (value) => value.split("\n").filter(item => !!item);
+  const open = (state) => {
+    if(list(state.value).length > 0) {
+      list(state.value).map(item => {
+        console.log(state.value)
+        setState(prevState => ({ ...prevState, value: prevState.value.replace(item,'') }));
+        console.log(state.value)
+        //window.open(item.trim());
+        console.log(item.trim().split("\n").filter(item => !!item));
+      });
+    }
+  }
   return (
     <React.Fragment>
-      {console.log(state.list)}
-      <TextareaAutosize
-        value={state.value}
-        onChange={(e) => parseLinks(e)}
-        className={mergeCls(classes.textArea, classes.common)}
-        rowsMax={20}
-        aria-label="Paste links"
-        placeholder="Paste your links"
-      />
-      <ul className={mergeCls(classes.list, classes.common)}>
-        {state && state.split("\n").filter(item => !!item).map((item,key) => <li key={key}><a href={item.trim()}>{item.trim()}</a></li>)}
-      </ul>
+      <CssBaseline />
+      <div className={classes.buttons}>
+        <Button onClick={toggle} color="primary">Edit</Button>
+        <Button onClick={() => open(state)} variant="contained" color="primary">Open All</Button>
+      </div>
+      <div className={classes.textPane}>
+        <TextareaAutosize
+          value={state.value}
+          onPaste={toggle}
+          onChange={(e) => parseLinks(e)}
+          className={mergeCls(classes.textArea, classes.common, state.clsToggle && classes.visible)}
+          rowsMax={20}
+          placeholder="Paste your links"
+        />
+        <ul className={mergeCls(classes.list, classes.common, !state.clsToggle && classes.visible)}>
+          {state.value && list(state.value).map((item,key) => <li key={key}><a href={item.trim()}>{item.trim()}</a></li>)}
+        </ul>
+      </div>
     </React.Fragment>
   );
 }

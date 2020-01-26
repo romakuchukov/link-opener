@@ -2,7 +2,7 @@ module.hot && module.hot.accept();
 
 import ReactDOM from 'react-dom';
 
-import App from './cmp/App';
+import App from './cmp/app';
 
 ReactDOM.render(<App/>, document.getElementById('root'));
 

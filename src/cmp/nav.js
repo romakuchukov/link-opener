@@ -20,7 +20,6 @@ const Nav = (props) => {
     setState({value: []});
   }
 
-
   return (
     <div className={wrap}>
       <Button onClick={() => open(state)} variant="contained" disabled={!len}>Open All</Button>

@@ -10,8 +10,6 @@ const PasteArea = (props) => {
     setState({value:strToArray(value)});
   }
 
-  console.log(props.data);
-
   return (
     <div className={classes.textPane}>
       <TextareaAutosize

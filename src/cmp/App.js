@@ -66,9 +66,8 @@ const MaxHeightTextarea = (props) => {
     setState(prevState => ({ ...prevState, clsToggle: !prevState.clsToggle }));
   }
 
-
   const list = state.value;
-  console.log(classes);
+
   return (
     <React.Fragment>
       <CssBaseline />

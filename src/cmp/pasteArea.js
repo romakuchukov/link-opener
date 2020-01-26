@@ -41,8 +41,8 @@ const styles = (theme) => ({
   }
 });
 
-const PasteArea = (props) => {
-  const { classes, data } = props;
+const PasteArea = ({ classes, data } ) => {
+
   const { state, setState, list, toggle, mergeCls } = data;
 
   const strToArray = (str) => str.replace(/\n/g, ' ').split(' ').filter(item => !!item);

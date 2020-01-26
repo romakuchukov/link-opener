@@ -11,8 +11,8 @@ const styles = (theme) => ({
   }
 });
 
-const Nav = (props) => {
-  const { classes, data } = props;
+const Nav = ({ classes, data }) => {
+
   const { state, setState, toggle, len } = data;
 
   const open = (state) => {

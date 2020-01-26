@@ -11,6 +11,8 @@ const styles = (theme) => ({
   }
 });
 
+const win = window;
+
 const Nav = ({ classes, data }) => {
 
   const { state, setState, toggle, len } = data;
@@ -21,7 +23,8 @@ const Nav = ({ classes, data }) => {
         setState(prevState => ({
           ...prevState, value: prevState.value.filter(val => val !== item)
         }));
-        window.open(item.trim());
+        win.open(item.trim());
+        win.opener = null;
       });
     }
     if(!state.clsToggle) toggle();

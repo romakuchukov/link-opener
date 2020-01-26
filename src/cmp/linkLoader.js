@@ -1,4 +1,5 @@
 import { TextareaAutosize, withStyles, Button, CssBaseline } from '@material-ui/core';
+import Nav from './nav';
 
 const typography = {
   fontSize:20,
@@ -9,9 +10,10 @@ const typography = {
 };
 
 const styles = (theme) => ({
-  buttons: {
+  buttonsWrap: {
     display: 'flex',
     justifyContent: 'center',
+    marginBottom: 20,
     '& > *': { margin: 'auto' },
     '& button:first-of-type': { marginLeft: 0 },
     '& button:last-of-type': { marginRight: 0 },
@@ -34,7 +36,7 @@ const styles = (theme) => ({
     '& li': { listStyle: 'none' },
     '& a': { ...typography },
   },
-  textPane: { marginTop: '5%' },
+  textPane: { marginTop: '1%' },
   textArea: {
     position: 'absolute',
     resize: 'none',
@@ -51,43 +53,55 @@ const styles = (theme) => ({
 });
 
 const MaxHeightTextarea = (props) => {
-  const [state, setState] = React.useState({value: '', clsToggle: true});
+
+  const [state, setState] = React.useState({value: [], clsToggle: true});
+
   const {classes} = props;
+
+  const strToArray = (str) => str.replace(/\n/g, ' ').split(' ').filter(item => !!item);
 
   const parseLinks = (e) => {
     const { value } = e.target;
-    setState(prevState => ({ ...prevState, value }));
+
+    setState({value:strToArray(value)});
+
   }
 
-  const mergeCls = (...classList) => classList.filter(item => item).join(' ');
+  const mergeCls = (...clsList) => clsList.filter(item => item).join(' ');
 
 
   const toggle = () => {
     setState(prevState => ({ ...prevState, clsToggle: !prevState.clsToggle }));
   }
 
-  const list = (value) => value.split("\n").filter(item => !!item);
   const open = (state) => {
-    if(list(state.value).length > 0) {
-      list(state.value).map(item => {
-        console.log(state.value)
-        setState(prevState => ({ ...prevState, value: prevState.value.replace(item,'') }));
-        console.log(state.value)
-        //window.open(item.trim());
-        console.log(item.trim().split("\n").filter(item => !!item));
+    if(state.value.length > 0) {
+      state.value.map(item => {
+        setState(prevState => ({
+          ...prevState, value: prevState.value.filter(val => val !== item)
+        }));
+        window.open(item.trim());
       });
     }
+    if(!state.clsToggle) toggle();
   }
+
+  const clear = () => {
+    setState({value: []});
+  }
+  const list = state.value;
+
   return (
     <React.Fragment>
       <CssBaseline />
-      <div className={classes.buttons}>
-        <Button onClick={toggle} color="primary">Edit</Button>
-        <Button onClick={() => open(state)} variant="contained" color="primary">Open All</Button>
+      <div className={classes.buttonsWrap}>
+        <Button onClick={() => open(state)} variant="contained" disabled={!list.length}>Open All</Button>
+        <Button onClick={clear} disabled={!list.length}>Clear</Button>
+        <Button onClick={toggle} disabled={!list.length}>Convert</Button>
       </div>
       <div className={classes.textPane}>
         <TextareaAutosize
-          value={state.value}
+          value={list.join("\n")}
           onPaste={toggle}
           onChange={(e) => parseLinks(e)}
           className={mergeCls(classes.textArea, classes.common, state.clsToggle && classes.visible)}
@@ -95,7 +109,7 @@ const MaxHeightTextarea = (props) => {
           placeholder="Paste your links"
         />
         <ul className={mergeCls(classes.list, classes.common, !state.clsToggle && classes.visible)}>
-          {state.value && list(state.value).map((item,key) => <li key={key}><a href={item.trim()}>{item.trim()}</a></li>)}
+          {list.map((item, key) => <li key={key}><a href={item}>{item}</a></li>)}
         </ul>
       </div>
     </React.Fragment>
@@ -105,11 +119,9 @@ const MaxHeightTextarea = (props) => {
 export default withStyles(styles)(MaxHeightTextarea);
 /*
 
- https://create-react-app.dev/docs/making-a-progressive-web-app/
-https://css-tricks.com/snippets/css/a-guide-to-flexbox/#flexbox-background
-https://www.tutorialrepublic.com/faq/how-to-disable-resizable-property-of-textarea-using-css.php
-https://www.w3schools.com/cssref/css3_pr_resize.asp
-https://www.w3docs.com/snippets/css/how-to-disable-the-resizing-of-the-textarea-element.html
-https://electrictoolbox.com/disable-textarea-resizing-safari-chrome/
+ http://localhost:8080/
+http://localhost:8080/
+ http://localhost:8080/
+http://localhost:8080/
 
 */

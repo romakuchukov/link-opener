@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const dotenv = require('dotenv').config().parsed;
 
 const config = {
   entry: {
@@ -52,6 +53,7 @@ const config = {
       React: 'react',
       serviceWorker: ['serviceWorker', 'default']
     }),
+    new webpack.DefinePlugin({ 'process.env': JSON.stringify(dotenv) }),
   ],
 };
 

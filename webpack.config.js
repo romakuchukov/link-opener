@@ -1,11 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
-const dotenv = require('dotenv').config().parsed;
 
 const config = {
+  // entry for the app @ development
   entry: {
     app: './src/index.js'
   },
+  //output compiled js to a directory
   output: {
     filename: 'app.js',
     path: path.resolve(__dirname, 'public'),
@@ -18,7 +19,6 @@ const config = {
       serviceWorker: path.resolve(__dirname, './src/plugins/serviceWorker'),
     }
   },
-
   module:{
     rules:[{
       //test:/\.(s*)css$/,
@@ -31,7 +31,8 @@ const config = {
     }]
   },
   devServer: {
-    //contentBase: './public',
+    //publicPath: '/public/',
+    //contentBase: false,
     hot: true,
     compress: true,
     port: 8080,
@@ -53,7 +54,6 @@ const config = {
       React: 'react',
       serviceWorker: ['serviceWorker', 'default']
     }),
-    new webpack.DefinePlugin({ 'process.env': JSON.stringify(dotenv) }),
   ],
 };
 

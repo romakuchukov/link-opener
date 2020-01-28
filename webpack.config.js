@@ -36,7 +36,7 @@ const config = {
     //contentBase: false,
     hot: true,
     compress: true,
-    port: 8080,
+    port: 8888,
     allowedHosts: ['localhost'],
     watchOptions: {
       // Delay the rebuild after the first change

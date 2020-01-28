@@ -4,3 +4,5 @@ package-lock.json
 *.swp
 .vscode
 .env
+service-worker.js
+public/

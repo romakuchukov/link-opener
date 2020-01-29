@@ -5,21 +5,27 @@ import { Nav, PasteArea } from './cmp';
 
 const App = (props) => {
 
-  const [state, setState] = React.useState({value: [], clsToggle: true});
+  const [state, setState] = React.useState({value: '', clsToggle: true});
 
-  const mergeCls = (...clsList) => clsList.filter(item => item).join(' ');
+  const strCleanup = (str) => str.replace(/^\s*[\r\n]/gm, '').replace(/\s/gm, '\n').split(' ').join('');
+  const strToArray = (str) => str.replace(/\n/g, ' ').split(' ').filter(item => !!item);
 
   const toggle = () => {
-    setState(prevState => ({ ...prevState, clsToggle: !prevState.clsToggle }));
+    setState(prevState => ({
+      ...prevState,
+      clsToggle: !prevState.clsToggle,
+      value:strCleanup(prevState.value)
+    }));
   }
 
   const list = state.value;
+  const clsToggle = state.clsToggle;
 
   return (
     <React.Fragment>
       <CssBaseline />
-      <Nav data={{ state, setState, toggle, len:list.length  }} />
-      <PasteArea data={{ state, setState, list, toggle, mergeCls }} />
+      <Nav data={{ setState, toggle, clsToggle, list, strToArray }} />
+      <PasteArea data={{ setState, toggle, clsToggle, list, strToArray }} />
     </React.Fragment>
   );
 }

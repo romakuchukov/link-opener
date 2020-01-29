@@ -15,55 +15,74 @@ const styles = (theme) => ({
     height: '100%',
     padding: 0,
     margin: 0,
-    zIndex: -1
+    display: 'none'
   },
   list: {
-    zIndex: -1,
     position: 'relative',
-    paddingBottom: 1,
+    padding: theme.spacing(2),
     outline: 'none!important',
     '& li': { listStyle: 'none' },
     '& a': { ...typography },
   },
-  textPane: { marginTop: '1%' },
+  textPane: {
+    width: '100%',
+    marginTop: 50
+  },
   textArea: {
-    position: 'absolute',
+    position: 'relative',
     resize: 'none',
-    color:'#222',
+    color: '#222',
     border: 'none',
-    borderBottom: '1px solid #222',
     outline: 'none',
+    boxSizing: 'border-box',
+    padding: theme.spacing(2),
     ...typography
    },
    visible: {
-    zIndex: 1,
-    outline: 'solid 1px #e0e0e0'
+    display: 'block',
+    outline: 'solid 1px #e0e0e0',
+    '&:not(ul)': { borderBottom: '1px solid #222' }
   }
 });
 
 const PasteArea = ({ classes, data } ) => {
 
-  const { state, setState, list, toggle, mergeCls } = data;
+  const { setState, toggle, clsToggle, list, strToArray } = data;
+  const [ pasteState, setPaste ] = React.useState(false);
 
-  const strToArray = (str) => str.replace(/\n/g, ' ').split(' ').filter(item => !!item);
+/*
+
+ http://localhost:8888/ http://localhost:8888/
+http://localhost:8888/ http://localhost:8888/
+
+*/
 
   const parseLinks = (e) => {
     const { value } = e.target;
-    setState({value:strToArray(value)});
+    setState(prevState => ({ ...prevState, value }));
   }
+
+  const paste = () => { setPaste(true); }
+
+  React.useEffect(() => {
+    if (pasteState) {
+      toggle();
+      setPaste(false);
+    }
+  }, [list]);
 
   return (
     <div className={classes.textPane}>
       <TextareaAutosize
-        value={list.join("\n")}
-        onPaste={toggle}
+        onPaste={paste}
+        value={list}
         onChange={(e) => parseLinks(e)}
-        className={mergeCls(classes.textArea, classes.common, state.clsToggle && classes.visible)}
+        className={[classes.textArea, classes.common, clsToggle && classes.visible].join(' ')}
         rowsMax={20}
         placeholder="Paste your links here"
       />
-      <ul className={mergeCls(classes.list, classes.common, !state.clsToggle && classes.visible)}>
-        {list.map((item, key) => <li key={key}><a target="_blank" rel="noopener noreferrer" href={item}>{item}</a></li>)}
+      <ul className={[classes.list, classes.common, !clsToggle && classes.visible].join(' ')}>
+        {strToArray(list).map((item, key) => <li key={key}><a target="_blank" rel="noopener noreferrer" href={item}>{item}</a></li>)}
       </ul>
     </div>
   );

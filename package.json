@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js",
-    "build": "webpack --mode production",
+    "build": "rm -r public/precache-manifest.*.js; webpack --mode production",
     "test": "ospec --require ./test-setup.js"
   },
   "author": "Roma",

@@ -1,2 +1,2 @@
-# react-webpack-boilerplate
-Just a simple react/webpack boilerplate.
+# Link Opener
+Opens links

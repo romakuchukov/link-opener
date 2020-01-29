@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const dotenv = require('dotenv').config().parsed;
 
 const config = {
   // entry for the app @ development
@@ -62,11 +63,7 @@ const config = {
       React: 'react',
       serviceWorker: ['serviceWorker', 'default']
     }),
-    new webpack.DefinePlugin({
-      "process.env": {
-        PUBLIC_URL: JSON.stringify("http://localhost:8000")
-      }
-    }),
+    new webpack.DefinePlugin({ 'process.env': JSON.stringify(dotenv) })
   ],
 };
 

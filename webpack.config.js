@@ -34,10 +34,11 @@ const config = {
   },
   devServer: {
     //publicPath: '/public/',
-    //contentBase: false,
+    //contentBase: './',
     hot: true,
     compress: true,
     port: 8888,
+    overlay: true,
     allowedHosts: ['localhost'],
     watchOptions: {
       // Delay the rebuild after the first change
@@ -46,7 +47,6 @@ const config = {
       // Poll using interval (in ms, accepts boolean too)
       poll: 1000,
     },
-    overlay: true,
   },
   plugins: [
     // Ignore node_modules so CPU usage with poll

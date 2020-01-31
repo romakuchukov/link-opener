@@ -14,30 +14,35 @@ const win = window;
 
 const Nav = ({ classes, data }) => {
 
-  const { setState, toggle, clsToggle, list, strToArray } = data;
+  const { toggleCls, list, setState, toggle, strToArray } = data;
 
-  const open = (list, clsToggle) => {
-    if(list.length > 0) {
-      list.map(item => {
+  const listArr = strToArray(list);
+
+  const open = () => {
+    if(listArr.length > 0) {
+      listArr.map(item => {
         setState(prevState => ({
-          ...prevState, value: prevState.value.replace(item, '')
+          ...prevState, value: prevState.value.replace(item, '').trim()
         }));
-        win.open(item);
-        win.opener = null;
+
+        if(item.trim()) {
+          win.open(item);
+          win.opener = null;
+        }
       });
     }
-    clear();
+    if(!toggleCls) toggle();
   }
 
   const clear = () => {
-    setState(prevState => ({ ...prevState, value: '', clsToggle: true }));
+    setState(prevState => ({ ...prevState, value: '', toggleCls: true }));
   }
 
   return (
     <div className={classes.wrap}>
-      <Button onClick={() => open(strToArray(list), clsToggle)} variant="contained" color="primary" disabled={!list.length}>Open All</Button>
+      <Button onClick={open} variant="contained" color="primary" disabled={!list.length}>Open All</Button>
       <Button onClick={clear} variant="contained" disabled={!list.length}>Clear</Button>
-      <Button onClick={toggle} variant="contained" disabled={!list.length}>Edit</Button>
+      <Button onClick={toggle} variant="contained" disabled={!list.trim().length}>Edit</Button>
     </div>
   );
 }

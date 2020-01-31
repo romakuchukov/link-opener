@@ -1,39 +1,38 @@
 import { CssBaseline } from '@material-ui/core';
-
 import { Nav, PasteArea } from './cmp';
 
+/*
 
+ http://localhost:8888/
+http://localhost:8888/ http://localhost:8888/
+
+*/
 const App = (props) => {
 
-  const [state, setState] = React.useState({value: '', clsToggle: true});
+  const [state, setState] = React.useState({value: '', toggleCls: true});
 
   const strCleanup = (str) => str.replace(/^\s*[\r\n]/gm, '').replace(/\s/gm, '\n').split(' ').join('');
-  const strToArray = (str) => str.replace(/\n/g, ' ').split(' ').filter(item => !!item);
+  const strToArray = (str) => str.replace(/\n/g, ' ').split(' ');
 
   const toggle = () => {
     setState(prevState => ({
       ...prevState,
-      clsToggle: !prevState.clsToggle,
+      toggleCls: !prevState.toggleCls,
       value:strCleanup(prevState.value)
     }));
   }
 
   const list = state.value;
-  const clsToggle = state.clsToggle;
+  const toggleCls = state.toggleCls;
+  const data = { toggleCls, list, setState, toggle, strToArray };
 
   return (
     <React.Fragment>
       <CssBaseline />
-      <Nav data={{ setState, toggle, clsToggle, list, strToArray }} />
-      <PasteArea data={{ setState, toggle, clsToggle, list, strToArray }} />
+      <Nav data={data} />
+      <PasteArea data={data} />
     </React.Fragment>
   );
 }
 
 export default App;
-/*
-
- http://localhost:8080/ http://localhost:8080/
- http://localhost:8080/ http://localhost:8080/
-
-*/

@@ -47,15 +47,8 @@ const styles = (theme) => ({
 
 const PasteArea = ({ classes, data } ) => {
 
-  const { setState, toggle, clsToggle, list, strToArray } = data;
+  const { toggleCls, list, setState, toggle, strToArray } = data;
   const [ pasteState, setPaste ] = React.useState(false);
-
-/*
-
- http://localhost:8888/ http://localhost:8888/
-http://localhost:8888/ http://localhost:8888/
-
-*/
 
   const parseLinks = (e) => {
     const { value } = e.target;
@@ -70,18 +63,17 @@ http://localhost:8888/ http://localhost:8888/
       setPaste(false);
     }
   }, [list]);
-
   return (
     <div className={classes.textPane}>
       <TextareaAutosize
         onPaste={paste}
         value={list}
         onChange={(e) => parseLinks(e)}
-        className={[classes.textArea, classes.common, clsToggle && classes.visible].join(' ')}
+        className={[classes.textArea, classes.common, toggleCls && classes.visible].join(' ')}
         rowsMax={20}
         placeholder="Paste your links here"
       />
-      <ul className={[classes.list, classes.common, !clsToggle && classes.visible].join(' ')}>
+      <ul className={[classes.list, classes.common, !toggleCls && classes.visible].join(' ')}>
         {strToArray(list).map((item, key) => <li key={key}><a target="_blank" rel="noopener noreferrer" href={item}>{item}</a></li>)}
       </ul>
     </div>

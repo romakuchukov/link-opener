@@ -1,5 +1,5 @@
 {
-  "name": "react-webpack-boilerplate",
+  "name": "link-opener",
   "version": "0.0.1",
   "private": true,
   "description": "Simple react-webpack boilerplate.",
@@ -7,7 +7,7 @@
   "scripts": {
     "heroku-prebuild": "npm install --dev",
     "start": "webpack-dev-server --config ./webpack.config.js",
-    "build": "rm -r public/precache-manifest.*.js; webpack --mode production",
+    "build": "webpack --mode production",
     "test": "ospec --require ./test-setup.js"
   },
   "author": "Roma",

@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "heroku-prebuild": "npm install --dev",
-    "start": "",
+    "start": "echo 'finished'",
     "build": "webpack --mode production",
     "test": "ospec --require ./test-setup.js"
   },

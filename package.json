@@ -5,8 +5,7 @@
   "description": "Simple react-webpack boilerplate.",
   "main": "index.js",
   "scripts": {
-    "heroku-prebuild": "npm install --dev",
-    "start": "pwd",
+    "start": "npm install --dev",
     "build": "webpack --mode production",
     "test": "ospec --require ./test-setup.js"
   },

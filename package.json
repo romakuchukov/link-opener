@@ -5,7 +5,7 @@
   "description": "Simple react-webpack boilerplate.",
   "main": "index.js",
   "scripts": {
-    "heroku-prebuild": "npm install --only=dev",
+    "heroku-prebuild": "php -S https://stormy-tor-32633.herokuapp.com",
     "build": "webpack --mode production",
     "test": "ospec --require ./test-setup.js"
   },

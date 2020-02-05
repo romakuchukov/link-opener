@@ -11,21 +11,24 @@
     <link rel="apple-touch-icon" href="/logo192.png">
     <link rel="apple-touch-icon" href="/logo592.png">
     <link rel="manifest" href="/manifest.json">
-    <title>Link Opener</title>
+    <title>Link/URL Opener | Bulk URL/Link opener</title>
     <style>
         * {
             padding: 0;
             margin: 0;
             font-family: Roboto, Helvetica, Arial, sans-serif;
         }
-        .lds-dual-ring {
+
+        *, *::before, *::after { box-sizing: inherit; }
+
+        .loading {
             display: block;
             width: 110px;
             height: 110px;
             margin: 0 auto;
             margin-top: 90px;
         }
-        .lds-dual-ring:after {
+        .loading:after {
             content: " ";
             display: block;
             width: 76px;
@@ -36,13 +39,24 @@
             border-color: #3f51b5 transparent #3f51b5 transparent;
             animation: lds-dual-ring 1.2s linear infinite;
         }
-        #root {
+        h1, #root {
             margin: 0 auto;
             width: 100%;
             max-width: 900px;
             position: relative;
-            padding: 30px;
-            /* box-sizing: border-box; */
+        }
+        #root { padding: 30px; }
+        h1 {
+            padding: 0 30px;
+            margin-top: 20px;
+            color: #757575;
+            font-weight: 100;
+            text-align: center;
+            font-size: 28px;
+            line-height: 40px;
+            letter-spacing: 0.15px;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
         }
         @keyframes lds-dual-ring {
             0% { transform: rotate(0deg); }
@@ -52,8 +66,9 @@
 </head>
 <body>
     <noscript>You need to enable JavaScript to run this app LOL.</noscript>
+    <h1>Link/URL opener. Open a list of link/urls in bulk.</h1>
     <div id="root">
-        <div class="lds-dual-ring"></div>
+        <div class="loading"></div>
     </div>
     <script src="./public/app.js" async></script>
 </body>

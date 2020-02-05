@@ -1,0 +1,8 @@
+{
+  "name": "Link/URL Opener | Bulk URL/Link opener",
+  "description": "Link/URL opener. Open a list of link/urls in bulk.",
+  "repository": "N/A",
+  "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
+  "keywords": ["node", "react", "heroku"],
+  "image": "heroku/nodejs"
+}

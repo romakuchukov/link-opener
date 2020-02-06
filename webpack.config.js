@@ -57,14 +57,13 @@ const config = {
       serviceWorker: ['serviceWorker', 'default']
     }),
     new GenerateSW({
-      globDirectory: '.',
+      globDirectory: './',
       globPatterns: [
         'favicon.ico',
         'index.html',
         'logo192.png',
         'logo512.png',
-        'manifest.json',
-        'public/*'
+        'manifest.json'
       ],
       // these options encourage the ServiceWorkers to get in there fast
       // and not allow any straggling "old" SWs to hang around

@@ -58,7 +58,13 @@ const config = {
     }),
     new GenerateSW({
       globDirectory: '.',
-      globPatterns: ['**/*.{json,ico,html,png,js}'],
+      globPatterns: [
+        '/favicon.ico',
+        '/index.html',
+        '/logo192.png',
+        '/logo512.png',
+        '/manifest.json'
+      ],
       // these options encourage the ServiceWorkers to get in there fast
       // and not allow any straggling "old" SWs to hang around
       clientsClaim: true,

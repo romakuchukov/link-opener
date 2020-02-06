@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const dotenv = require('dotenv').config().parsed;
-console.log(JSON.stringify(dotenv))
+console.log(JSON.stringify(dotenv));
 const config = {
   // entry for the app @ development
   entry: {

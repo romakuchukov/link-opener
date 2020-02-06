@@ -64,7 +64,7 @@ const config = {
         'logo192.png',
         'logo512.png',
         'manifest.json',
-        'public/*.{js}'
+        'public/*'
       ],
       // these options encourage the ServiceWorkers to get in there fast
       // and not allow any straggling "old" SWs to hang around

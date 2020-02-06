@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const WorkboxPlugin = require('workbox-webpack-plugin');
+const { GenerateSW } = require('workbox-webpack-plugin');
 
 const config = {
   // entry for the app @ development
@@ -56,9 +56,9 @@ const config = {
       React: 'react',
       serviceWorker: ['serviceWorker', 'default']
     }),
-    new WorkboxPlugin.GenerateSW({
-      globDirectory: './',
-      globPatterns: ['**/*.{js,html,png,ico}'],
+    new GenerateSW({
+      // globDirectory: './',
+      // globPatterns: ['**/*.{js,html,png,ico}'],
       // these options encourage the ServiceWorkers to get in there fast
       // and not allow any straggling "old" SWs to hang around
       clientsClaim: true,

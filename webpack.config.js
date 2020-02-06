@@ -63,7 +63,7 @@ const config = {
       React: 'react',
       serviceWorker: ['serviceWorker', 'default']
     }),
-    new webpack.DefinePlugin({ 'process.env.PUBLIC_URL': 'https://link-opener.herokuapp.com' })
+    new webpack.DefinePlugin({ 'process.env': {PUBLIC_URL:'https://link-opener.herokuapp.com'} })
   ],
 };
 

@@ -63,7 +63,7 @@ const config = {
       React: 'react',
       serviceWorker: ['serviceWorker', 'default']
     }),
-    new webpack.DefinePlugin({ 'process.env': JSON.stringify(dotenv) })
+    //new webpack.DefinePlugin({ 'process.env': JSON.stringify(dotenv) })
   ],
 };
 

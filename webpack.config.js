@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const dotenv = require('dotenv').config().parsed;
-
+console.log(JSON.stringify(dotenv))
 const config = {
   // entry for the app @ development
   entry: {
@@ -63,7 +63,7 @@ const config = {
       React: 'react',
       serviceWorker: ['serviceWorker', 'default']
     }),
-    new webpack.DefinePlugin({ 'process.env': "{PUBLIC_URL:'https://link-opener.herokuapp.com'}" })
+    new webpack.DefinePlugin({ 'process.env': JSON.stringify(dotenv) })
   ],
 };
 

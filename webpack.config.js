@@ -1,8 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const dotenv = require('dotenv').config().parsed;
-console.log(JSON.stringify(dotenv));
+
 const config = {
   // entry for the app @ development
   entry: {
@@ -52,18 +51,18 @@ const config = {
     // Ignore node_modules so CPU usage with poll
     // watching drops significantly.
     new webpack.WatchIgnorePlugin([path.join(__dirname, 'node_modules')]),
+    new webpack.DefinePlugin({ 'process.env': JSON.stringify(process.env) }),
+    new webpack.ProvidePlugin({
+      React: 'react',
+      serviceWorker: ['serviceWorker', 'default']
+    }),
     new WorkboxPlugin.GenerateSW({
       // these options encourage the ServiceWorkers to get in there fast
       // and not allow any straggling "old" SWs to hang around
       clientsClaim: true,
       skipWaiting: true,
       swDest: '../service-worker.js', //service-worker in the root
-    }),
-    new webpack.ProvidePlugin({
-      React: 'react',
-      serviceWorker: ['serviceWorker', 'default']
-    }),
-    new webpack.DefinePlugin({ 'process.env': JSON.stringify(dotenv) })
+    })
   ],
 };
 

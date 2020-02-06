@@ -12,8 +12,18 @@ import * as serviceWorker from 'serviceWorker';
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 
-if(process.env.PUBLIC_URL.indexOf('localhost') > 0) {
-  serviceWorker.unregister();
-} else {
-  serviceWorker.register();
+// if(process.env.PUBLIC_URL.indexOf('localhost') > 0) {
+//   serviceWorker.unregister();
+// } else {
+//   serviceWorker.register();
+// }
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js').then(registration => {
+      console.log('SW registered: ', registration);
+    }).catch(registrationError => {
+      console.log('SW registration failed: ', registrationError);
+    });
+  });
 }

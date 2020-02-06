@@ -57,8 +57,8 @@ const config = {
       serviceWorker: ['serviceWorker', 'default']
     }),
     new GenerateSW({
-      // globDirectory: '.',
-      // globPatterns: ['**/*.{json,ico,html,png,js}'],
+      globDirectory: '.',
+      globPatterns: ['**/*.{json,ico,html,png,js}'],
       // these options encourage the ServiceWorkers to get in there fast
       // and not allow any straggling "old" SWs to hang around
       clientsClaim: true,

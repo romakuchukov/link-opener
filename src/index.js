@@ -12,8 +12,8 @@ import * as serviceWorker from 'serviceWorker';
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 
-if(process.env.NODE_ENV === 'production') {
-  serviceWorker.register();
-} else {
+if(process.env.NODE_ENV === 'dev') {
   serviceWorker.unregister();
+} else {
+  serviceWorker.register();
 }

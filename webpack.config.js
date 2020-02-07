@@ -2,10 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 const { GenerateSW } = require('workbox-webpack-plugin');
 
-const glob = (process.env.NODE_ENV === 'production') ? {
+const glob = (process.env.NODE_ENV === 'dev') ? {} : {
   globDirectory: './',
   globPatterns: ['favicon.ico', 'index.html', 'logo192.png', 'logo512.png', 'manifest.json' ],
-} : {};
+};
 
 const config = {
   // entry for the app @ development

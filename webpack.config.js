@@ -6,7 +6,7 @@ const glob = (process.env.NODE_ENV === 'production') ? {
   globDirectory: './',
   globPatterns: ['favicon.ico', 'index.html', 'logo192.png', 'logo512.png', 'manifest.json' ],
 } : {};
-
+console.log(process.env)
 const config = {
   // entry for the app @ development
   entry: {

@@ -13,7 +13,7 @@ import * as serviceWorker from 'serviceWorker';
 // Learn more about service workers: https://bit.ly/CRA-PWA
 
 if(process.env.NODE_ENV === 'production') {
-  serviceWorker.unregister();
-} else {
   serviceWorker.register();
+} else {
+  serviceWorker.unregister();
 }

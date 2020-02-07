@@ -72,6 +72,9 @@ const config = {
   ],
 };
 
-console.log(config)
+console.log(config.plugins)
+console.log(glob)
+
+
 
 module.exports = config;

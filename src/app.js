@@ -1,12 +1,6 @@
 import { CssBaseline } from '@material-ui/core';
 import { Nav, PasteArea } from './cmp';
 
-/*
-
- http://localhost:8888/
-http://localhost:8888/ http://localhost:8888/
-
-*/
 const App = (props) => {
 
   const [state, setState] = React.useState({value: '', toggleCls: true});

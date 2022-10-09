@@ -1,11 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
 const { GenerateSW } = require('workbox-webpack-plugin');
-console.log(process.env.NODE_ENV)
-const glob = (process.env.NODE_ENV === 'dev') ? {} : {
-  globDirectory: './',
-  globPatterns: ['favicon.ico', 'index.html', 'logo192.png', 'logo512.png', 'manifest.json' ],
-};
+
+// const glob = (process.env.NODE_ENV === 'dev') ? {} : {
+//   globDirectory: './',
+//   globPatterns: ['favicon.ico', 'index.html', 'logo192.png', 'logo512.png', 'manifest.json' ],
+// };
 
 const config = {
   // entry for the app @ development
@@ -62,7 +62,7 @@ const config = {
       serviceWorker: ['serviceWorker', 'default']
     }),
     new GenerateSW({
-      ...glob,
+      //...glob,
       // these options encourage the ServiceWorkers to get in there fast
       // and not allow any straggling "old" SWs to hang around
       clientsClaim: true,

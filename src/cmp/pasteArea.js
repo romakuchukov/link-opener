@@ -63,6 +63,7 @@ const PasteArea = ({ classes, data } ) => {
       setPaste(false);
     }
   }, [list]);
+
   return (
     <div className={classes.textPane}>
       <TextareaAutosize
@@ -72,9 +73,10 @@ const PasteArea = ({ classes, data } ) => {
         className={[classes.textArea, classes.common, toggleCls && classes.visible].join(' ')}
         rowsMax={20}
         placeholder="Paste your links here"
+        aria-label="Input links"
       />
       <ul className={[classes.list, classes.common, !toggleCls && classes.visible].join(' ')}>
-        {strToArray(list).map((item, key) => <li key={key}><a target="_blank" rel="noopener noreferrer" href={item}>{item}</a></li>)}
+        {list && strToArray(list).map((item, key) => <li key={key}><a target="_blank" rel="noopener noreferrer" href={item}>{item}</a></li>)}
       </ul>
     </div>
   );

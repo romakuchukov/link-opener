@@ -1,32 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, Button } from '@material-ui/core';
+import { Button } from '@mui/material';
+import { styled } from '@mui/system';
 
-const styles = () => ({
-  wrap: {
-    display: 'flex',
-    justifyContent: 'center',
-    '& > *': { margin: 'auto' },
-    '& button:first-of-type': { marginLeft: 0 },
-    '& button:last-of-type': { marginRight: 0 },
-  },
+const Wrapper = styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  gap: '1rem',
 });
 
-const Nav = ({ classes, data }) => {
+const Nav = ({ data }) => {
   const { toggleCls, list, setState, toggle, strToArray } = data;
 
   const listArr = strToArray(list);
 
   const open = () => {
-    if (listArr.length > 0) {
-      listArr.map((item) => {
+    if (listArr.length) {
+      listArr.map((url) => {
         setState((prevState) => ({
           ...prevState,
-          value: prevState.value.replace(item, '').trim(),
+          value: prevState.value.replace(url, '').trim(),
         }));
 
-        if (item.trim()) {
-          window.open(item);
+        if (url.trim()) {
+          window.open(
+            !url.trim().match(/^https?:\/\//i) ? `http://${url}` : url
+          );
           window.opener = null;
         }
       });
@@ -39,7 +38,7 @@ const Nav = ({ classes, data }) => {
   };
 
   return (
-    <div className={classes.wrap}>
+    <Wrapper>
       <Button
         onClick={open}
         color="primary"
@@ -58,12 +57,11 @@ const Nav = ({ classes, data }) => {
       >
         Edit
       </Button>
-    </div>
+    </Wrapper>
   );
 };
 
 Nav.propTypes = {
-  classes: PropTypes.object.isRequired,
   data: PropTypes.shape({
     toggleCls: PropTypes.bool.isRequired,
     list: PropTypes.string.isRequired,
@@ -73,4 +71,4 @@ Nav.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styles)(Nav);
+export default Nav;

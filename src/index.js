@@ -4,7 +4,8 @@ module.hot && module.hot.accept();
 import process from 'process';
 import * as serviceWorker from 'serviceWorker';
 import React from 'react';
-import ReactDOM from 'react-dom';
+
+import { createRoot } from 'react-dom/client';
 import App from './app';
 
 // If you want your app to work offline and load faster, you can change
@@ -17,4 +18,5 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'dev') {
   serviceWorker.register();
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+const root = createRoot(document.getElementById('root'));
+root.render(<App />);

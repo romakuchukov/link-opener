@@ -1,5 +1,5 @@
 import React from 'react'; // Add this line to import the React module
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline } from '@mui/material';
 import { Nav, PasteArea } from './cmp';
 
 const App = () => {

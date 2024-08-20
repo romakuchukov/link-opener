@@ -1,11 +1,13 @@
-import { withStyles, TextareaAutosize, Button } from '@material-ui/core';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles, TextareaAutosize } from '@material-ui/core';
 
 const typography = {
-  fontSize:20,
-  lineHeight:'1.3em',
-  fontWeight:'normal',
+  fontSize: 20,
+  lineHeight: '1.3em',
+  fontWeight: 'normal',
   fontFamily: 'inherit',
-  letterSpacing: 'normal'
+  letterSpacing: 'normal',
 };
 
 const styles = (theme) => ({
@@ -15,7 +17,7 @@ const styles = (theme) => ({
     height: '100%',
     padding: 0,
     margin: 0,
-    display: 'none'
+    display: 'none',
   },
   list: {
     position: 'relative',
@@ -26,7 +28,7 @@ const styles = (theme) => ({
   },
   textPane: {
     width: '100%',
-    marginTop: 50
+    marginTop: 50,
   },
   textArea: {
     position: 'relative',
@@ -36,26 +38,27 @@ const styles = (theme) => ({
     outline: 'none',
     boxSizing: 'border-box',
     padding: theme.spacing(2),
-    ...typography
-   },
-   visible: {
+    ...typography,
+  },
+  visible: {
     display: 'block',
     outline: 'solid 1px #e0e0e0',
-    '&:not(ul)': { borderBottom: '1px solid #222' }
-  }
+    '&:not(ul)': { borderBottom: '1px solid #222' },
+  },
 });
 
-const PasteArea = ({ classes, data } ) => {
-
+const PasteArea = ({ classes, data }) => {
   const { toggleCls, list, setState, toggle, strToArray } = data;
-  const [ pasteState, setPaste ] = React.useState(false);
+  const [pasteState, setPaste] = React.useState(false);
 
   const parseLinks = (e) => {
     const { value } = e.target;
-    setState(prevState => ({ ...prevState, value }));
-  }
+    setState((prevState) => ({ ...prevState, value }));
+  };
 
-  const paste = () => { setPaste(true); }
+  const paste = () => {
+    setPaste(true);
+  };
 
   React.useEffect(() => {
     if (pasteState) {
@@ -69,17 +72,40 @@ const PasteArea = ({ classes, data } ) => {
       <TextareaAutosize
         onPaste={paste}
         value={list}
-        onChange={(e) => parseLinks(e)}
-        className={[classes.textArea, classes.common, toggleCls && classes.visible].join(' ')}
         rowsMax={20}
-        placeholder="Paste your links here"
         aria-label="Input links"
+        onChange={(e) => parseLinks(e)}
+        placeholder="Paste your links here"
+        className={[
+          classes.textArea,
+          classes.common,
+          toggleCls && classes.visible,
+        ].join(' ')}
       />
-      <ul className={[classes.list, classes.common, !toggleCls && classes.visible].join(' ')}>
-        {list && strToArray(list).map((item, key) => <li key={key}><a target="_blank" rel="noopener noreferrer" href={item}>{item}</a></li>)}
+      <ul
+        className={[
+          classes.list,
+          classes.common,
+          !toggleCls && classes.visible,
+        ].join(' ')}
+      >
+        {list &&
+          strToArray(list).map((item, key) => (
+            <li key={key}>
+              <a target="_blank" rel="noopener noreferrer" href={item}>
+                {item}
+              </a>
+            </li>
+          ))}
       </ul>
     </div>
   );
-}
+};
+
+PasteArea.propTypes = {
+  classes: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
+  toggleCls: PropTypes.bool.isRequired,
+};
 
 export default withStyles(styles)(PasteArea);
